@@ -5,14 +5,6 @@
         <servlet-class>controller.LoginStaffServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>SalePersonDashboardServlet</servlet-name>
-        <servlet-class>controller.SalePersonDashboardServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>MechanicDashboardServlet</servlet-name>
-        <servlet-class>controller.MechanicDashboardServlet</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>LogoutStaffServlet</servlet-name>
         <servlet-class>controller.LogoutStaffServlet</servlet-class>
     </servlet>
@@ -24,17 +16,13 @@
         <servlet-name>SearchCustomerServlet</servlet-name>
         <servlet-class>controller.SearchCustomerServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>MainServlet</servlet-name>
+        <servlet-class>controller.MainServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginStaffServlet</servlet-name>
         <url-pattern>/LoginStaffServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>SalePersonDashboardServlet</servlet-name>
-        <url-pattern>/SalePersonDashboardServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>MechanicDashboardServlet</servlet-name>
-        <url-pattern>/MechanicDashboardServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>LogoutStaffServlet</servlet-name>
@@ -48,9 +36,16 @@
         <servlet-name>SearchCustomerServlet</servlet-name>
         <url-pattern>/SearchCustomerServlet</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MainServlet</servlet-name>
+        <url-pattern>/MainServlet</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
+    <welcome-file-list>
+        <welcome-file>MainServlet</welcome-file>
+    </welcome-file-list>
 </web-app>

@@ -49,20 +49,21 @@ public class LoginStaffServlet extends HttpServlet {
                     Mechanic m = md.getMechanicByName(name);
                     if(m == null) {
                         //login fail
-                        response.sendRedirect("loginFail.html");
+                        request.setAttribute("result", "sale person is not valid");
+                        request.getRequestDispatcher("MainServlet?action=loginStaffForm").forward(request, response);
                     }else {
                         //login thành công thì lưu thông tin vào session
                         HttpSession s = request.getSession(true);
                         s.setAttribute("mechanic", m);
                         //chuyển đến dashboard của mechanic
-                        response.sendRedirect("MechanicDashboardServlet");
+                        request.getRequestDispatcher("MainServlet?action=mechanicDashBoard").forward(request, response);
                     }
                 } else {
                     //login thành công thì lưu thông tin vào session
                     HttpSession s = request.getSession(true);
                     s.setAttribute("sale", sp);
                     //chuyển đến dashboard của sale person
-                    response.sendRedirect("SalePersonDashboardServlet");
+                    request.getRequestDispatcher("MainServlet?action=salePersonDashBoard").forward(request, response);
                 }
             }
         }

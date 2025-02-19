@@ -11,14 +11,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import model.Mechanic;
 
 /**
  *
  * @author ASUS
  */
-public class MechanicDashboardServlet extends HttpServlet {
+public class MainServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,13 +31,34 @@ public class MechanicDashboardServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            HttpSession s = request.getSession();
-            Mechanic m = (Mechanic)s.getAttribute("mechanic");
-            if (m == null) {
-                out.print("You are not valid");
-            } else {
-                out.print("welcome to mechanic dashboard");
+            /* TODO output your page here. You may use following sample code. */
+            String a = request.getParameter("action");
+            if(a == null) a = "home";
+            String url = "";
+            switch(a) {
+                case "home":
+                    url = "index.jsp";
+                    break;
+                case "loginCustForm":
+                    url = "logincustpage.jsp";
+                    break;
+                case "loginStaffForm":
+                    url = "loginstaffpage.jsp";
+                    break;
+                case "loginCust":
+                    url = "LoginCustServlet";
+                    break;
+                case "loginStaff":
+                    url = "LoginStaffServlet";
+                    break;
+                case "salePersonDashBoard":
+                    url = "salepersondashboard.jsp";
+                    break;
+                case "mechanicDashBoard":
+                    url = "mechanicdashboard.jsp";
+                    break;    
             }
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 
