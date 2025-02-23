@@ -21,9 +21,14 @@
         %>
                 <h1>Welcome to sale person dashboard</h1>
                 <h3>Function for customer</h3>  
-                <div><a href='createNewCustomer.html'>Create new customer</a></div>
-                <div><a href='searchCustomer.html'>Search customer</a></div>
-                <div><a href='LogoutStaffServlet'>Logout</a></div>
+                <div><a href='MainServlet?action=createCust'>Create new customer</a></div>
+                <div><a href='MainServlet?action=searchCust'>Search customer by name</a></div>
+                <div><a href='MainServlet?action=viewCust'>View all customers</a></div>
+                <div><a href='MainServlet?action=updateCust'>Update customer</a></div>
+                <div><a href='MainServlet?action=deleteCust'>Delete customer</a></div>
+                <form>
+                    <div><input type="submit" name="action" value="logout"></div>
+                </form>
         <%
             }else {
                 out.print("You are not valid");

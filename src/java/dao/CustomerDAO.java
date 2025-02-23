@@ -38,8 +38,8 @@ public class CustomerDAO {
                     while(table.next()) {
                         int custID = table.getInt("custID");
                         String custName = table.getString("custName");
-                        //phone trong sql null thì nhận về 0
-                        double custPhone = table.getDouble("phone");
+                        //phone trong sql null thì nhận về null
+                        String custPhone = table.getString("phone") != null ? table.getString("phone") : "";
                         //sex trong sql null thì nhận về null
                         String custSex = table.getString("sex") != null ? table.getString("sex") : "";
                         //address trong sql null thì nhận về null
@@ -61,6 +61,131 @@ public class CustomerDAO {
             }
         }
         
+        return rs;
+    }
+
+    public int createCustomer(Customer c) {
+        int rs = 0;
+        Connection cn = null;
+        try {
+            cn = DBUtils.getConnection();
+            if(cn != null) {
+                String sql = "insert Customer([custID], [custName], [phone], [sex], [cusAddress])\n"
+                        + "values (?, ?, ?, ?, ?)";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setInt(1, c.getCustID());
+                pst.setString(2, c.getCustName());
+                double custPhone = 0;
+                if(!c.getCustPhone().isEmpty()) {
+                    custPhone = Double.parseDouble(c.getCustPhone());
+                }
+                //nếu staff k nhập phone thì sẽ lưu phone = 0
+                pst.setDouble(3, custPhone);
+                //nếu staff k nhập sex thì sẽ lưu sex rỗng
+                pst.setString(4, c.getCustSex());
+                //nếu staff k nhập addresss thì sẽ lưu addresss rỗng
+                pst.setString(5, c.getCustAddress());
+                rs = pst.executeUpdate();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try{
+                if(cn!=null) cn.close();
+            }catch(Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return rs;
+    }
+
+    public Customer searchCustById(int id) {
+        Customer rs = null;
+        Connection cn = null;
+        try{
+            cn = DBUtils.getConnection();
+            if(cn != null) {
+                String sql = "select custName, phone, sex, cusAddress\n"
+                        + "from customer where custID = ?";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setInt(1, id);
+                ResultSet table = pst.executeQuery();
+                if(table != null) {
+                    if(table.next()) {
+                        String custName = table.getString("custName");
+                        String phone = table.getString("phone") != null ? table.getString("phone") : "";
+                        String sex = table.getString("sex") != null ? table.getString("sex") : "";
+                        String cusAddress = table.getString("cusAddress") != null ? table.getString("cusAddress") : "";
+                        rs = new Customer(id, custName, phone, sex, cusAddress);
+                    }
+                }
+            }
+        }catch(Exception e) {
+            e.printStackTrace();
+        }finally {
+            try{
+                if(cn != null) cn.close();
+            }catch(Exception e) {
+                e.printStackTrace();
+            }
+        }
+        
+        return rs;
+    }
+
+    public int updateCust(Customer c) {
+        int rs = 0;
+        Connection cn = null;
+        try{
+            cn = DBUtils.getConnection();
+            if(cn != null) {
+                String sql = "update Customer \n"
+                        + "set custName = ?, phone = ?, sex = ?, cusAddress = ?\n"
+                        + "where custID = ?";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setString(1, c.getCustName());
+                //phone lúc đầu có thể rỗng, và khi update thì vẫn k thêm phone vào
+                //--> phone vẫn rỗng --> lưu là 0
+                double phone = c.getCustPhone().isEmpty() ? 0 : Double.parseDouble(c.getCustPhone());
+                pst.setDouble(2, phone);
+                pst.setString(3, c.getCustSex());
+                pst.setString(4, c.getCustAddress());
+                pst.setInt(5, c.getCustID());
+                rs = pst.executeUpdate(); 
+            }
+        }catch(Exception e) {
+            e.printStackTrace();
+        }finally {
+            try{
+                if(cn != null) cn.close();
+            }catch(Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return rs;
+    }
+    
+    public int deleteCust(int id) {
+        int rs = 0;
+        Connection cn = null;
+        try{
+            cn = DBUtils.getConnection();
+            if(cn != null) {
+                String sql = "delete from Customer\n"
+                        + "where custID = ?";
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setInt(1, id);
+                rs = pst.executeUpdate();
+            }
+        }catch(Exception e) {
+            e.printStackTrace();
+        }finally {
+            try{
+                if(cn != null) cn.close();
+            }catch(Exception e) {
+                e.printStackTrace();
+            }
+        }
         return rs;
     }
 }

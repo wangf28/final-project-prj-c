@@ -12,14 +12,14 @@ package model;
 public class Customer {
     private int custID;
     private String custName;
-    private double custPhone;
+    private String custPhone;
     private String custSex;
     private String custAddress;
 
     public Customer() {
     }
 
-    public Customer(int custID, String custName, double custPhone, String custSex, String custAddress) {
+    public Customer(int custID, String custName, String custPhone, String custSex, String custAddress) {
         this.custID = custID;
         this.custName = custName;
         this.custPhone = custPhone;
@@ -43,11 +43,11 @@ public class Customer {
         this.custName = custName;
     }
 
-    public double getCustPhone() {
+    public String getCustPhone() {
         return custPhone;
     }
 
-    public void setCustPhone(double custPhone) {
+    public void setCustPhone(String custPhone) {
         this.custPhone = custPhone;
     }
 

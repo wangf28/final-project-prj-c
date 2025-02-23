@@ -37,11 +37,14 @@ public class SearchCustomerServlet extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
             request.setCharacterEncoding("UTF-8");
             String custName = request.getParameter("custName");
-//            out.print(custName);
-            CustomerDAO custDAO = new CustomerDAO();
-            ArrayList<Customer> custList = custDAO.searchCustomerByName(custName);
-            for (Customer c : custList) {
-                out.print(c.toString() + "<br>");
+//            request.setAttribute("custName", custName);
+            if(custName != null) {
+                CustomerDAO custDAO = new CustomerDAO();
+                ArrayList<Customer> custList = custDAO.searchCustomerByName(custName);
+                request.setAttribute("custList", custList);
+                request.getRequestDispatcher("MainServlet?action=searchCust").forward(request, response);
+            } else {
+                request.getRequestDispatcher("MainServlet?action=home").forward(request, response);
             }
         }
     }

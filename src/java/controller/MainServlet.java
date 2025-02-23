@@ -56,7 +56,37 @@ public class MainServlet extends HttpServlet {
                     break;
                 case "mechanicDashBoard":
                     url = "mechanicdashboard.jsp";
-                    break;    
+                    break;
+                case "logout":
+                    url = "LogoutStaffServlet";
+                    break;
+                case "createCust":
+                    url = "createNewCust.jsp";
+                    break;  
+                case "searchCust":
+                    url = "searchCust.jsp";
+                    break;
+                case "searchCustByName":
+                    url = "SearchCustomerServlet";
+                    break;
+                case "createCustServ":
+                    url = "CreateNewCustomerServlet";
+                    break;
+                case "viewCust":
+                    url = "viewAllCust.jsp";
+                    break;
+                case "updateCust":
+                    url = "updateCustPage.jsp";
+                    break;
+                case "update":
+                    url = "updateCustServlet";
+                    break;
+                case "deleteCust":
+                    url = "deleteCustPage.jsp";
+                    break;
+                case "delete":
+                    url = "DeleteCustServlet";
+                    break;
             }
             request.getRequestDispatcher(url).forward(request, response);
         }

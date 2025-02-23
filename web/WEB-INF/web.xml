@@ -20,6 +20,14 @@
         <servlet-name>MainServlet</servlet-name>
         <servlet-class>controller.MainServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>updateCustServlet</servlet-name>
+        <servlet-class>controller.updateCustServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteCustServlet</servlet-name>
+        <servlet-class>controller.DeleteCustServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginStaffServlet</servlet-name>
         <url-pattern>/LoginStaffServlet</url-pattern>
@@ -39,6 +47,14 @@
     <servlet-mapping>
         <servlet-name>MainServlet</servlet-name>
         <url-pattern>/MainServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>updateCustServlet</servlet-name>
+        <url-pattern>/updateCustServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteCustServlet</servlet-name>
+        <url-pattern>/DeleteCustServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Mechanic;
+import model.SalePerson;
 
 /**
  *
@@ -33,8 +35,16 @@ public class LogoutStaffServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             HttpSession s = request.getSession();
-            s.invalidate();
-            response.sendRedirect("index.html");
+            //check xem session đang có đăng nhập sale person hay mechanic hay không
+            SalePerson sp = (SalePerson)s.getAttribute("sale");
+            Mechanic me = (Mechanic)s.getAttribute("mechanic");
+            if(sp != null || me != null) { //có đang đăng nhập
+                s.invalidate();
+                request.getRequestDispatcher("MainServlet?action=home").forward(request, response);
+            } else { //vào trực tiếp trang logout mà k đăng nhập
+                request.getRequestDispatcher("MainServlet?action=home").forward(request, response);
+            }
+            
         }
     }
 

@@ -12,13 +12,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Customer;
 
 /**
  *
  * @author ASUS
  */
-public class CreateNewCustomerServlet extends HttpServlet {
+public class DeleteCustServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,31 +32,16 @@ public class CreateNewCustomerServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            request.setCharacterEncoding("UTF-8");
-            int custID = Integer.parseInt(request.getParameter("custID"));
-            //kiểm tra xem id đã tồn tại chưa
+            /* TODO output your page here. You may use following sample code. */
+            int id = Integer.parseInt(request.getParameter("custID"));
             CustomerDAO d = new CustomerDAO();
-            if(d.searchCustById(custID) != null) { //id tồn tại
-                request.setAttribute("result", "id of customer exists");
-                request.getRequestDispatcher("MainServlet?action=createCust").forward(request, response);
+            int rs = d.deleteCust(id);
+            if(rs > 0) {
+                request.setAttribute("result", "delete successfully");
+            } else {
+                request.setAttribute("result", "delete fail");
             }
-            
-            String custName = request.getParameter("custName");
-            //nếu người dùng k nhập phone thì phone sẽ nhận dc chuỗi rỗng ""
-            String custPhone = request.getParameter("custPhone");
-            //nếu người dùng k nhập sex thì sex sẽ nhận dc chuỗi rỗng ""
-            String custSex = request.getParameter("custSex");
-            //nếu người dùng k nhập address thì address sẽ nhận dc chuỗi rỗng ""
-            String custAddress = request.getParameter("custAddress");
-            
-            Customer c = new Customer(custID, custName, custPhone, custSex, custAddress);
-            int rs = d.createCustomer(c);
-            if(rs == 0) {
-                request.setAttribute("result", "create fail");
-            }else {
-                request.setAttribute("result", "create successfully");
-            }
-            request.getRequestDispatcher("MainServlet?action=createCust").forward(request, response);
+            request.getRequestDispatcher("MainServlet?action=deleteCust").forward(request, response);
         }
     }
 

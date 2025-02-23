@@ -18,7 +18,7 @@ import model.Customer;
  *
  * @author ASUS
  */
-public class CreateNewCustomerServlet extends HttpServlet {
+public class updateCustServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,31 +33,38 @@ public class CreateNewCustomerServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            request.setCharacterEncoding("UTF-8");
-            int custID = Integer.parseInt(request.getParameter("custID"));
-            //kiểm tra xem id đã tồn tại chưa
+            int id = Integer.parseInt(request.getParameter("custID"));
+            String name = request.getParameter("nCustName");
+            String phone = request.getParameter("nCustPhone");
+            String sex = request.getParameter("nCustSex"); 
+            String address = request.getParameter("nCustAddress");
+            
+            //lấy customer có id đó ra
             CustomerDAO d = new CustomerDAO();
-            if(d.searchCustById(custID) != null) { //id tồn tại
-                request.setAttribute("result", "id of customer exists");
-                request.getRequestDispatcher("MainServlet?action=createCust").forward(request, response);
+            Customer updatedCust = d.searchCustById(id);
+            //kiểm tra xem dữ liệu nào không rỗng thì cập nhật cho cust đó
+            //cust lúc này vừa có dữ liệu cũ và mới -> ghi vào DB
+            if(!name.isEmpty()) {
+                updatedCust.setCustName(name);
             }
-            
-            String custName = request.getParameter("custName");
-            //nếu người dùng k nhập phone thì phone sẽ nhận dc chuỗi rỗng ""
-            String custPhone = request.getParameter("custPhone");
-            //nếu người dùng k nhập sex thì sex sẽ nhận dc chuỗi rỗng ""
-            String custSex = request.getParameter("custSex");
-            //nếu người dùng k nhập address thì address sẽ nhận dc chuỗi rỗng ""
-            String custAddress = request.getParameter("custAddress");
-            
-            Customer c = new Customer(custID, custName, custPhone, custSex, custAddress);
-            int rs = d.createCustomer(c);
-            if(rs == 0) {
-                request.setAttribute("result", "create fail");
-            }else {
-                request.setAttribute("result", "create successfully");
+            if(!phone.isEmpty()) {
+                updatedCust.setCustPhone(phone);
             }
-            request.getRequestDispatcher("MainServlet?action=createCust").forward(request, response);
+            if(!sex.isEmpty()) {
+                updatedCust.setCustSex(sex);
+            }
+            if(!address.isEmpty()) {
+                updatedCust.setCustAddress(address);
+            }
+            int rs = d.updateCust(updatedCust);
+            if(rs > 0) {
+                request.setAttribute("result", "update successfully");
+                request.setAttribute("updatedCust", updatedCust);
+                request.getRequestDispatcher("MainServlet?action=updateCust").forward(request, response);
+            }else{
+                request.setAttribute("result", "update fail");
+                request.getRequestDispatcher("MainServlet?action=updateCust").forward(request, response);
+            }
         }
     }
 
