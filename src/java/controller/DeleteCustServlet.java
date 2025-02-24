@@ -33,7 +33,11 @@ public class DeleteCustServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            int id = Integer.parseInt(request.getParameter("custID"));
+            String idS = request.getParameter("custID");
+            if(idS == null) {
+                request.getRequestDispatcher("MainServlet?action=home").forward(request, response);
+            }
+            int id = Integer.parseInt(idS);
             CustomerDAO d = new CustomerDAO();
             int rs = d.deleteCust(id);
             if(rs > 0) {

@@ -5,7 +5,7 @@
  */
 package controller;
 
-import dao.CustomerDAO;
+import dao.CarDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -13,13 +13,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Customer;
+import model.Car;
 
 /**
  *
  * @author ASUS
  */
-public class SearchCustomerServlet extends HttpServlet {
+public class SearchCarServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,15 +34,23 @@ public class SearchCustomerServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            request.setCharacterEncoding("UTF-8");
-            String custName = request.getParameter("custName");
-            if(custName != null) {
-                CustomerDAO custDAO = new CustomerDAO();
-                ArrayList<Customer> custList = custDAO.searchCustomerByName(custName);
-                request.setAttribute("custList", custList);
-                request.getRequestDispatcher("MainServlet?action=searchCust").forward(request, response);
-            } else {
+            //serialNum và model có thể rỗng
+            String serialNum = request.getParameter("serialNum");
+            String model = request.getParameter("model");
+            //year rỗng thì chuyển nó là 0
+            //ko rỗng thì parseInt nó
+            String year = request.getParameter("year");
+            int yearN;
+            if(year.isEmpty()) 
+                yearN = 0;
+            else 
+                yearN = Integer.parseInt(year);
+            CarDAO cD = new CarDAO();
+            ArrayList<Car> cList = cD.searchCars(serialNum, model, "", yearN);
+            if(cList != null) {
+                request.setAttribute("result", cList);
+                request.getRequestDispatcher("MainServlet?action=searchCar").forward(request, response);
+            }else {
                 request.getRequestDispatcher("MainServlet?action=home").forward(request, response);
             }
         }

@@ -21,17 +21,25 @@
         %>
                 <h1>Welcome to sale person dashboard</h1>
                 <h3>Function for customer</h3>  
-                <div><a href='MainServlet?action=createCust'>Create new customer</a></div>
                 <div><a href='MainServlet?action=searchCust'>Search customer by name</a></div>
+                <div><a href='MainServlet?action=createCust'>Create new customer</a></div>
                 <div><a href='MainServlet?action=viewCust'>View all customers</a></div>
                 <div><a href='MainServlet?action=updateCust'>Update customer</a></div>
                 <div><a href='MainServlet?action=deleteCust'>Delete customer</a></div>
+                
+                <h3>Function for cars</h3> 
+                <div><a href='MainServlet?action=searchCar'>Search car</a></div>
+                <div><a href='MainServlet?action=createCar'>Create new car</a></div>
+                <div><a href='MainServlet?action=viewCar'>View all cars</a></div>
+                <div><a href='MainServlet?action=updateCar'>Update car</a></div>
+                <div><a href='MainServlet?action=deleteCar'>Delete car</a></div>
+                
                 <form>
                     <div><input type="submit" name="action" value="logout"></div>
                 </form>
         <%
             }else {
-                out.print("You are not valid");
+                request.getRequestDispatcher("MainServlet?action=home").forward(request, response);
             }
         %>
     </body>

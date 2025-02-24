@@ -87,6 +87,26 @@ public class MainServlet extends HttpServlet {
                 case "delete":
                     url = "DeleteCustServlet";
                     break;
+                //----------------------------
+                case "searchCar":
+                    url = "searchCarPage.jsp";
+                    break;
+                case "seachCarServ":
+                    url = "SearchCarServlet";
+                    break;
+                //----------------------------
+                case "createCar":
+                    url = "createCarPage.jsp";
+                    break;
+                case "viewCar":
+                    url = "viewCarPage.jsp";
+                    break;
+                case "updateCar":
+                    url = "updateCarPage.jsp";
+                    break;
+                case "deleteCar":
+                    url = "deleteCarPage.jsp";
+                    break;    
             }
             request.getRequestDispatcher(url).forward(request, response);
         }

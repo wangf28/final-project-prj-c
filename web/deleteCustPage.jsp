@@ -4,6 +4,7 @@
     Author     : ASUS
 --%>
 
+<%@page import="model.SalePerson"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.Customer"%>
 <%@page import="dao.CustomerDAO"%>
@@ -15,6 +16,10 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <%
+            SalePerson sp = (SalePerson)session.getAttribute("sale");
+            if(sp == null) request.getRequestDispatcher("MainServlet?action=home").forward(request, response);
+        %>
         <%
             CustomerDAO d = new CustomerDAO();
             ArrayList<Customer> custList = d.searchCustomerByName("");
@@ -33,6 +38,8 @@
             </select>
             <input type="submit" value="delete" name="action">
         </form>
+            
+        <a href="MainServlet?action=salePersonDashBoard">Back to sale person dashboard</a>
             
         <%
             if(request.getAttribute("result")!=null) {

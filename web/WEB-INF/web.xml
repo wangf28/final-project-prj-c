@@ -28,6 +28,10 @@
         <servlet-name>DeleteCustServlet</servlet-name>
         <servlet-class>controller.DeleteCustServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SearchCarServlet</servlet-name>
+        <servlet-class>controller.SearchCarServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginStaffServlet</servlet-name>
         <url-pattern>/LoginStaffServlet</url-pattern>
@@ -55,6 +59,10 @@
     <servlet-mapping>
         <servlet-name>DeleteCustServlet</servlet-name>
         <url-pattern>/DeleteCustServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchCarServlet</servlet-name>
+        <url-pattern>/SearchCarServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

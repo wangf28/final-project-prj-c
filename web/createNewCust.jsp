@@ -16,12 +16,11 @@
     <body>
         <%
             SalePerson sp = (SalePerson)session.getAttribute("sale");
-            Mechanic m = (Mechanic)session.getAttribute("mechanic");
-            if(sp == null && m == null) request.getRequestDispatcher("MainServlet?action=home").forward(request, response);
+            if(sp == null) request.getRequestDispatcher("MainServlet?action=home").forward(request, response);
         %>
         <h1>create cust jsp</h1>
         <form action="MainServlet" accept-charset="UTF-8">
-            <div><input type="text" name="custID" placeholder="enter cust id" required>*</div>
+            <div><input type="text" name="custID" placeholder="enter cust id" pattern="[0-9]+" required>*</div>
             <div><input type="text" name="custName" placeholder="enter cust name" required>*</div>
             <div><input type="text" name="custPhone" placeholder="enter cust phone" pattern="[0-9]+"></div>
             <div><input type="text" name="custSex" placeholder="enter cust sex"></div>
@@ -29,6 +28,8 @@
             <div><input type="submit" value="create"></div>
             <input type="hidden" value="createCustServ" name="action">
         </form>
+        
+        <a href="MainServlet?action=salePersonDashBoard">Back to sale person dashboard</a>
         
         <%
             if(request.getAttribute("result") != null) {

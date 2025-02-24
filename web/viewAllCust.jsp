@@ -19,9 +19,10 @@
     <body>
         <%
             SalePerson sp = (SalePerson)session.getAttribute("sale");
-            Mechanic m = (Mechanic)session.getAttribute("mechanic");
-            if(sp == null && m == null) request.getRequestDispatcher("MainServlet?action=home").forward(request, response);
-            
+            if(sp == null) request.getRequestDispatcher("MainServlet?action=home").forward(request, response);
+        %>
+        <a href="MainServlet?action=salePersonDashBoard">Back to sale person dashboard</a>
+        <%
             CustomerDAO d = new CustomerDAO();
             ArrayList<Customer> custlist = d.searchCustomerByName("");
             if(custlist != null && !custlist.isEmpty()) {

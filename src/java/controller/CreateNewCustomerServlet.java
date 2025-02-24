@@ -34,14 +34,7 @@ public class CreateNewCustomerServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             request.setCharacterEncoding("UTF-8");
-            int custID = Integer.parseInt(request.getParameter("custID"));
-            //kiểm tra xem id đã tồn tại chưa
-            CustomerDAO d = new CustomerDAO();
-            if(d.searchCustById(custID) != null) { //id tồn tại
-                request.setAttribute("result", "id of customer exists");
-                request.getRequestDispatcher("MainServlet?action=createCust").forward(request, response);
-            }
-            
+            String custIDS = request.getParameter("custID");
             String custName = request.getParameter("custName");
             //nếu người dùng k nhập phone thì phone sẽ nhận dc chuỗi rỗng ""
             String custPhone = request.getParameter("custPhone");
@@ -49,6 +42,20 @@ public class CreateNewCustomerServlet extends HttpServlet {
             String custSex = request.getParameter("custSex");
             //nếu người dùng k nhập address thì address sẽ nhận dc chuỗi rỗng ""
             String custAddress = request.getParameter("custAddress");
+            if(custIDS == null || custName == null || custPhone == null ||
+                custSex == null || custAddress == null) { 
+                request.getRequestDispatcher("MainServlet?action=home").forward(request, response);
+            }
+            
+            //không có dữ liệu nào null
+            int custID = Integer.parseInt(custIDS);
+            //kiểm tra xem id đã tồn tại chưa
+            CustomerDAO d = new CustomerDAO();
+            if(d.searchCustById(custID) != null) { //id tồn tại
+                request.setAttribute("result", "id of customer exists");
+                request.getRequestDispatcher("MainServlet?action=createCust").forward(request, response);
+            }
+            
             
             Customer c = new Customer(custID, custName, custPhone, custSex, custAddress);
             int rs = d.createCustomer(c);

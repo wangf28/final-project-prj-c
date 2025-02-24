@@ -4,6 +4,7 @@
     Author     : ASUS
 --%>
 
+<%@page import="model.SalePerson"%>
 <%@page import="model.Customer"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="dao.CustomerDAO"%>
@@ -15,6 +16,10 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <%
+            SalePerson sp = (SalePerson)session.getAttribute("sale");
+            if(sp == null) request.getRequestDispatcher("MainServlet?action=home").forward(request, response);
+        %>
         <%
             CustomerDAO d = new CustomerDAO();
             ArrayList<Customer> custList = d.searchCustomerByName("");
@@ -38,6 +43,9 @@
             <div><input type="text" name="nCustSex" placeholder="enter new cust sex"></div>
             <div><input type="text" name="nCustAddress" placeholder="enter new cust address"></div>
             <div><input type="submit" value="update" name="action"></div>
+        </form>
+        <a href="MainServlet?action=salePersonDashBoard">Back to sale person dashboard</a>
+        
             
             <%
                 if(request.getAttribute("result") != null) {
@@ -52,6 +60,5 @@
                     }
                 }
             %>
-        </form>
     </body>
 </html>

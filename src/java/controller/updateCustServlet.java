@@ -33,12 +33,16 @@ public class updateCustServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            int id = Integer.parseInt(request.getParameter("custID"));
+            String idS = request.getParameter("custID");
             String name = request.getParameter("nCustName");
             String phone = request.getParameter("nCustPhone");
             String sex = request.getParameter("nCustSex"); 
             String address = request.getParameter("nCustAddress");
             
+            if(idS == null || name == null || phone == null || sex == null || address == null) {
+                request.getRequestDispatcher("MainServlet?action=home").forward(request, response);
+            }
+            int id = Integer.parseInt(idS);
             //lấy customer có id đó ra
             CustomerDAO d = new CustomerDAO();
             Customer updatedCust = d.searchCustById(id);
