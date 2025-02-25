@@ -72,9 +72,6 @@ public class MainServlet extends HttpServlet {
                 case "createCustServ":
                     url = "CreateNewCustomerServlet";
                     break;
-                case "viewCust":
-                    url = "viewAllCust.jsp";
-                    break;
                 case "updateCust":
                     url = "updateCustPage.jsp";
                     break;
@@ -82,9 +79,6 @@ public class MainServlet extends HttpServlet {
                     url = "updateCustServlet";
                     break;
                 case "deleteCust":
-                    url = "deleteCustPage.jsp";
-                    break;
-                case "delete":
                     url = "DeleteCustServlet";
                     break;
                 //----------------------------
@@ -107,6 +101,10 @@ public class MainServlet extends HttpServlet {
                 case "deleteCar":
                     url = "deleteCarPage.jsp";
                     break;    
+                //---------------createTicketPage    
+//                case "createTicketPage":
+//                    url = "createTicketPage.jsp";
+//                    break;
             }
             request.getRequestDispatcher(url).forward(request, response);
         }

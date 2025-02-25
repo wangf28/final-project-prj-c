@@ -45,7 +45,7 @@ public class DeleteCustServlet extends HttpServlet {
             } else {
                 request.setAttribute("result", "delete fail");
             }
-            request.getRequestDispatcher("MainServlet?action=deleteCust").forward(request, response);
+            request.getRequestDispatcher("MainServlet?action=searchCust").forward(request, response);
         }
     }
 
