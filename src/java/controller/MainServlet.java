@@ -102,9 +102,12 @@ public class MainServlet extends HttpServlet {
                     url = "deleteCarPage.jsp";
                     break;    
                 //---------------createTicketPage    
-//                case "createTicketPage":
-//                    url = "createTicketPage.jsp";
-//                    break;
+                case "createTicketPage":
+                    url = "createTicketPage.jsp";
+                    break;
+                case "createTicketServ":
+                    url = "CreateTicketServlet";
+                    break;
             }
             request.getRequestDispatcher(url).forward(request, response);
         }

@@ -2,7 +2,7 @@
 package model;
 
 public class Car {
-    private double carID;
+    private String carID;
     private String serialNumber;
     private String model;
     private String colour;
@@ -11,7 +11,7 @@ public class Car {
     public Car() {
     }
 
-    public Car(double carID, String serialNumber, String model, String colour, int year) {
+    public Car(String carID, String serialNumber, String model, String colour, int year) {
         this.carID = carID;
         this.serialNumber = serialNumber;
         this.model = model;
@@ -19,11 +19,11 @@ public class Car {
         this.year = year;
     }
 
-    public double getCarID() {
+    public String getCarID() {
         return carID;
     }
 
-    public void setCarID(double carID) {
+    public void setCarID(String carID) {
         this.carID = carID;
     }
 

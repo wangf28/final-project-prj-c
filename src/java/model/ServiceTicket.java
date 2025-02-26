@@ -1,19 +1,19 @@
 
 package model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class ServiceTicket {
-    private int seviceTicketID;
-    private Date dateReceived;
-    private Date dateReturned;
-    private double carID;
+    private String seviceTicketID;
+    private LocalDate dateReceived;
+    private LocalDate dateReturned;
+    private String carID;
     private int custID;
 
     public ServiceTicket() {
     }
 
-    public ServiceTicket(int seviceTicketID, Date dateReceived, Date dateReturned, double carID, int custID) {
+    public ServiceTicket(String seviceTicketID, LocalDate dateReceived, LocalDate dateReturned, String carID, int custID) {
         this.seviceTicketID = seviceTicketID;
         this.dateReceived = dateReceived;
         this.dateReturned = dateReturned;
@@ -22,35 +22,35 @@ public class ServiceTicket {
     }
 
 
-    public int getSeviceTicketID() {
+    public String getSeviceTicketID() {
         return seviceTicketID;
     }
 
-    public void setSeviceTicketID(int seviceTicketID) {
+    public void setSeviceTicketID(String seviceTicketID) {
         this.seviceTicketID = seviceTicketID;
     }
 
-    public Date getDateReceived() {
+    public LocalDate getDateReceived() {
         return dateReceived;
     }
 
-    public void setDateReceived(Date dateReceived) {
+    public void setDateReceived(LocalDate dateReceived) {
         this.dateReceived = dateReceived;
     }
 
-    public Date getDateReturned() {
+    public LocalDate getDateReturned() {
         return dateReturned;
     }
 
-    public void setDateReturned(Date dateReturned) {
+    public void setDateReturned(LocalDate dateReturned) {
         this.dateReturned = dateReturned;
     }
 
-    public double getCarID() {
+    public String getCarID() {
         return carID;
     }
 
-    public void setCarID(double carID) {
+    public void setCarID(String carID) {
         this.carID = carID;
     }
 

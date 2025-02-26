@@ -32,6 +32,10 @@
         <servlet-name>SearchCarServlet</servlet-name>
         <servlet-class>controller.SearchCarServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CreateTicketServlet</servlet-name>
+        <servlet-class>controller.CreateTicketServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginStaffServlet</servlet-name>
         <url-pattern>/LoginStaffServlet</url-pattern>
@@ -63,6 +67,10 @@
     <servlet-mapping>
         <servlet-name>SearchCarServlet</servlet-name>
         <url-pattern>/SearchCarServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreateTicketServlet</servlet-name>
+        <url-pattern>/CreateTicketServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
