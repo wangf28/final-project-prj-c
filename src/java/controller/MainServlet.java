@@ -101,12 +101,18 @@ public class MainServlet extends HttpServlet {
                 case "deleteCar":
                     url = "deleteCarPage.jsp";
                     break;    
-                //---------------createTicketPage    
+                //-------------------------------    
                 case "createTicketPage":
                     url = "createTicketPage.jsp";
                     break;
                 case "createTicketServ":
                     url = "CreateTicketServlet";
+                    break;
+                case "searchServiceTicketPage":
+                    url = "searchServiceTicketPage.jsp";
+                    break;
+                case "searchServiceTicketServ":
+                    url = "SearchServiceTicketServlet";
                     break;
             }
             request.getRequestDispatcher(url).forward(request, response);

@@ -45,7 +45,8 @@
                 <div><a href='MainServlet?action=updateCar'>Update car</a></div>
                 <div><a href='MainServlet?action=deleteCar'>Delete car</a></div>
                 
-                <h3>Service tickets</h3> 
+                <h3>Service tickets</h3>
+                <div><a href='MainServlet?action=searchServiceTicketPage'>search service ticket</a></div>
                 <div><a href='MainServlet?action=createTicketPage'>Create service ticket</a></div>
         <%
             }else {

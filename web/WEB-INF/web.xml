@@ -22,7 +22,7 @@
     </servlet>
     <servlet>
         <servlet-name>updateCustServlet</servlet-name>
-        <servlet-class>controller.updateCustServlet</servlet-class>
+        <servlet-class>controller.UpdateCustServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>DeleteCustServlet</servlet-name>
@@ -35,6 +35,10 @@
     <servlet>
         <servlet-name>CreateTicketServlet</servlet-name>
         <servlet-class>controller.CreateTicketServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchServiceTicketServlet</servlet-name>
+        <servlet-class>controller.SearchServiceTicketServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginStaffServlet</servlet-name>
@@ -71,6 +75,10 @@
     <servlet-mapping>
         <servlet-name>CreateTicketServlet</servlet-name>
         <url-pattern>/CreateTicketServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchServiceTicketServlet</servlet-name>
+        <url-pattern>/SearchServiceTicketServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

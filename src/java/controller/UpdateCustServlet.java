@@ -18,7 +18,7 @@ import model.Customer;
  *
  * @author ASUS
  */
-public class updateCustServlet extends HttpServlet {
+public class UpdateCustServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>

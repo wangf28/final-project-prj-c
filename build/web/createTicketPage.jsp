@@ -4,6 +4,7 @@
     Author     : ASUS
 --%>
 
+<%@page import="model.SalePerson"%>
 <%@page import="model.Car"%>
 <%@page import="dao.CarDAO"%>
 <%@page import="model.Customer"%>
@@ -26,9 +27,14 @@
             justify-content: space-between;
             align-items: center;
         }
-    </style>
+        </style>
     </head>
     <body>
+        <!--check valid cua sale person-->
+        <%
+            SalePerson sp = (SalePerson)session.getAttribute("sale");
+            if(sp == null) request.getRequestDispatcher("MainServlet?action=home").forward(request, response);
+        %>
         
         <%
             CustomerDAO cD = new CustomerDAO();
@@ -45,16 +51,16 @@
         <form action="MainServlet">
             <div>
                 <label>Received Date</label>
-                <input type="date" name="dateReceived">
+                <input type="date" name="dateReceived" required>
             </div>
             <div>
                 <label>Returned Date</label>
-                <input type="date" name="dateReturned">
+                <input type="date" name="dateReturned" required>
             </div>
             <!--chọn customer-->
             <div>
                 <label>Customer: </label>
-                <select name="custID">
+                <select name="custID" required>
                     <option value="" selected>-----None-----</option>
                     <%
                         for (Customer c : custL) {
@@ -68,7 +74,7 @@
             <!--select car of customer-->
             <div>
                 <label>Car: </label>
-                <select name="carID" style="width: 50%">
+                <select name="carID" style="width: 50%" required>
                     <option value="" selected>-----None-----</option>
                     <%
                         for (Car c : carL) {

@@ -4,6 +4,8 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import model.ServiceTicket;
 import mylib.DBUtils;
 
@@ -40,6 +42,39 @@ public class ServiceTicketDAO {
             }
         }
         
+        return rs;
+    }
+
+    public ArrayList<ServiceTicket> searchTicketByCustID(int custID) {
+        ArrayList<ServiceTicket> rs = new ArrayList<>();
+        Connection cn = null;
+        try{
+            cn = DBUtils.getConnection(); //connect
+            String sql = "select serviceTicketID, dateReceived, dateReturned, custID, carID\n"
+                    + "from ServiceTicket\n"
+                    + "where custID = ?";
+            PreparedStatement pst = cn.prepareStatement(sql);
+            pst.setInt(1, custID);
+            ResultSet table = pst.executeQuery();
+            if(table != null) {
+                while(table.next()) {
+                    String seviceTicketID = table.getString("serviceTicketID");
+                    LocalDate dateReceived = LocalDate.parse(table.getString("dateReceived"));
+                    LocalDate dateReturned = LocalDate.parse(table.getString("dateReturned"));
+                    String carID = table.getString("carID");
+                    
+                    rs.add(new ServiceTicket(seviceTicketID, dateReceived, dateReturned, carID, custID));
+                }
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }finally{
+            try{
+                if(cn != null) cn.close();
+            }catch(Exception e) {
+                e.printStackTrace();
+            }
+        }
         return rs;
     }
 }
