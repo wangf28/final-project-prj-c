@@ -4,6 +4,7 @@
     Author     : ASUS
 --%>
 
+<%@page import="java.util.TreeSet"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.Car"%>
 <%@page import="java.time.LocalDate"%>
@@ -14,9 +15,21 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        <style>
+        .head-page{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        </style>
     </head>
     <body>
-        <h1>Search car page</h1>
+        
+        <div class="head-page">
+            <h1>Search car page</h1>
+            <a href="MainServlet?action=salePersonDashBoard">Back to sale person dashboard</a>
+        </div>
         
         <form action="MainServlet" accept-charset="UTF-8">
             <div>
@@ -30,7 +43,7 @@
             <div>
                 <label>Year: </label>
                 <select name="year">
-                    <option value="0">none</option>
+                    <option value="">-----none------</option>
                     <%
                     LocalDate d = LocalDate.now();       
                     for (int i = d.getYear(); i >= 1000; i--) {
@@ -47,9 +60,9 @@
                 
         <%
             if(request.getAttribute("result") != null) {
-                ArrayList<Car> cList = (ArrayList<Car>)request.getAttribute("result");
-                if(!cList.isEmpty()) {
-                    for (Car c : cList) {
+                ArrayList<Car> cars = (ArrayList<Car>)request.getAttribute("result");
+                if(!cars.isEmpty()) {
+                    for (Car c : cars) {
         %>
         <div><%= c.toString() %></div>
         <%

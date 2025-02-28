@@ -1,7 +1,7 @@
 
 package model;
 
-public class Car {
+public class Car{
     private String carID;
     private String serialNumber;
     private String model;
@@ -58,6 +58,10 @@ public class Car {
     public void setYear(int year) {
         this.year = year;
     }
-    
-    
+
+
+    @Override
+    public String toString() {
+        return "Car{" + "carID=" + carID + ", serialNumber=" + serialNumber + ", model=" + model + ", colour=" + colour + ", year=" + year + '}';
+    }
 }

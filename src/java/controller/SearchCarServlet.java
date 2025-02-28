@@ -9,6 +9,7 @@ import dao.CarDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.TreeSet;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -34,24 +35,17 @@ public class SearchCarServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            //serialNum và model có thể rỗng
             String serialNum = request.getParameter("serialNum");
             String model = request.getParameter("model");
-            //year rỗng thì chuyển nó là 0
-            //ko rỗng thì parseInt nó
-            String year = request.getParameter("year");
-            int yearN;
-            if(year.isEmpty()) 
-                yearN = 0;
-            else 
-                yearN = Integer.parseInt(year);
-            CarDAO cD = new CarDAO();
-            ArrayList<Car> cList = cD.searchCars(serialNum, model, "", yearN);
-            if(cList != null) {
-                request.setAttribute("result", cList);
-                request.getRequestDispatcher("MainServlet?action=searchCar").forward(request, response);
-            }else {
+            String yearS = request.getParameter("year");
+            if(serialNum == null || model == null || yearS == null)
                 request.getRequestDispatcher("MainServlet?action=home").forward(request, response);
+            CarDAO cD = new CarDAO();
+            //dùng year là String lun, để tìm trong DB với toán tử LIKE
+            ArrayList<Car> cars = cD.getCars(serialNum, model, yearS);
+            if(cars != null) {
+                request.setAttribute("result", cars);
+                request.getRequestDispatcher("MainServlet?action=searchCar").forward(request, response);
             }
         }
     }
