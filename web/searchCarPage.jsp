@@ -4,6 +4,7 @@
     Author     : ASUS
 --%>
 
+<%@page import="model.SalePerson"%>
 <%@page import="java.util.TreeSet"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.Car"%>
@@ -21,11 +22,13 @@
             justify-content: space-between;
             align-items: center;
         }
-        
         </style>
     </head>
     <body>
-        
+        <%
+            SalePerson sp = (SalePerson)session.getAttribute("sale");
+            if(sp == null) request.getRequestDispatcher("MainServlet?action=home").forward(request, response);
+        %>
         <div class="head-page">
             <h1>Search car page</h1>
             <a href="MainServlet?action=salePersonDashBoard">Back to sale person dashboard</a>
@@ -34,11 +37,17 @@
         <form action="MainServlet" accept-charset="UTF-8">
             <div>
                 <label>Serial number: </label>
-                <input type="text" name="serialNum" placeholder="enter serial number">
+                <input type="text" name="serialNum" 
+                       value="<%= request.getParameter("serialNum") != null ? request.getParameter("serialNum") : ""%>"
+                       placeholder="enter serial number"
+                >
             </div>
             <div>
                 <label>Model: </label>
-                <input type="text" name="model" placeholder="enter model">
+                <input type="text" name="model" 
+                       value="<%= request.getParameter("model") != null ? request.getParameter("model") : ""%>"
+                       placeholder="enter model"
+                >
             </div>
             <div>
                 <label>Year: </label>
@@ -58,22 +67,51 @@
             <input type="hidden" name="action" value="seachCarServ">
         </form>
                 
-        <%
-            if(request.getAttribute("result") != null) {
-                ArrayList<Car> cars = (ArrayList<Car>)request.getAttribute("result");
-                if(!cars.isEmpty()) {
-                    for (Car c : cars) {
-        %>
-        <div><%= c.toString() %></div>
-        <%
+                    <%
+                        if (request.getAttribute("result") != null) {
+                            ArrayList<Car> cars = (ArrayList<Car>) request.getAttribute("result");
+                            if (!cars.isEmpty()) {
+
+                    %>
+                    <table border="1">
+                        <tr>
+                            <th>Car ID</th>
+                            <th>Serial number</th>
+                            <th>Model</th>
+                            <th>Color</th>
+                            <th>Year</th>
+                            <th>Delete</th>
+                            <th>Update</th>
+                        </tr>
+                        <% 
+                            for (Car c : cars) {
+                        %>
+                        <tr>
+                            <td><%= c.getCarID() %></td>
+                            <td><%= c.getSerialNumber()%></td>
+                            <td><%= c.getModel() %></td>
+                            <td><%= c.getColour() %></td>
+                            <td><%= c.getYear() %></td>
+                            <td>
+                                <a href=''>Delete</a>
+                            </td>
+                            <td>
+                                <a href='MainServlet?action=updateCar&carID=<%= c.getCarID() %>'>Update</a>
+                            </td>
+                        </tr>
+
+                        <%
+                            }
+                        %>
+                    </table>
+                    <%
+                    }else {
+                    %>
+                    <h5>Not found</h5>
+                    <%
                     }
-                }else {
-        %>
-        <h5>Not found</h5>
-        <%
-                }
-            }
-        %>        
+                    }
+                    %>        
         
     </body>
 </html>

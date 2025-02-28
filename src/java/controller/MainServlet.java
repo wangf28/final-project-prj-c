@@ -60,6 +60,8 @@ public class MainServlet extends HttpServlet {
                 case "logout":
                     url = "LogoutStaffServlet";
                     break;
+                    
+                //---------------------------
                 case "createCust":
                     url = "createNewCust.jsp";
                     break;  
@@ -88,12 +90,11 @@ public class MainServlet extends HttpServlet {
                 case "seachCarServ":
                     url = "SearchCarServlet";
                     break;
-                //----------------------------
                 case "createCar":
                     url = "createCarPage.jsp";
                     break;
-                case "viewCar":
-                    url = "viewCarPage.jsp";
+                case "createCarServ":
+                    url = "CreateCarServlet";
                     break;
                 case "updateCar":
                     url = "updateCarPage.jsp";

@@ -14,13 +14,25 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        <style>
+        .head-page{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        </style>
     </head>
     <body>
+        <div class="head-page">
+            <h1>Update customer jsp</h1>
+            <a href="MainServlet?action=salePersonDashBoard">Back to sale person dashboard</a>
+        </div>
+        
         <%
             SalePerson sp = (SalePerson)session.getAttribute("sale");
             if(sp == null) request.getRequestDispatcher("MainServlet?action=home").forward(request, response);
         %>
-        <h1>Update customer jsp</h1>
+        
         <%
             String custID = "";
             if(request.getParameter("custID") == null)

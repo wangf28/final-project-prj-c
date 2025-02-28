@@ -36,17 +36,13 @@
                 <h3>Function for customer</h3>  
                 <div><a href='MainServlet?action=searchCust'>Search customer</a></div>
                 <div><a href='MainServlet?action=createCust'>Create new customer</a></div>
-                
-                
+                               
                 <h3>Function for cars</h3> 
                 <div><a href='MainServlet?action=searchCar'>Search car</a></div>
                 <div><a href='MainServlet?action=createCar'>Create new car</a></div>
-                <div><a href='MainServlet?action=viewCar'>View all cars</a></div>
-                <div><a href='MainServlet?action=updateCar'>Update car</a></div>
-                <div><a href='MainServlet?action=deleteCar'>Delete car</a></div>
                 
                 <h3>Service tickets</h3>
-                <div><a href='MainServlet?action=searchServiceTicketPage'>search service ticket</a></div>
+                <div><a href='MainServlet?action=searchServiceTicketPage'>Search service ticket</a></div>
                 <div><a href='MainServlet?action=createTicketPage'>Create service ticket</a></div>
         <%
             }else {
