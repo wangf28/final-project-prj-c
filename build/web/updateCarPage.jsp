@@ -4,6 +4,7 @@
     Author     : ASUS
 --%>
 
+<%@page import="java.time.LocalDate"%>
 <%@page import="model.Car"%>
 <%@page import="dao.CarDAO"%>
 <%@page import="model.SalePerson"%>
@@ -40,5 +41,59 @@
         %>
         <p>Car before updating</p>
         <div><%= c.toString() %></div>
+        
+        <form action="MainServlet">
+            <div>
+                <label>Serial Number: </label>
+                <input type="text" name="serialNum" placeholder="enter serial number" 
+                       value="<%= request.getParameter("serialNum") != null ? request.getParameter("serialNum") : ""%>"
+                >
+            </div>
+            <div>
+                <label>Model: </label>
+                <input type="text" name="model" placeholder="enter model" 
+                       value="<%= request.getParameter("model") != null ? request.getParameter("model") : ""%>"
+                >
+            </div>
+            <div>
+                <label>Color: </label>
+                <input type="text" name="colour" placeholder="enter color" 
+                       value="<%= request.getParameter("colour") != null ? request.getParameter("colour") : ""%>"                >
+            </div>
+            <div>
+                <label>Year: </label>
+                <select name="year">
+                    <option value="">-----none-----</option>
+                    <%
+                    LocalDate d = LocalDate.now();       
+                    for (int i = d.getYear(); i >= 1000; i--) {
+                    %>
+                    <option value="<%= i %>"><%= i %></option>
+                    <%
+                    }
+                    %>
+                </select>
+            </div>
+            <div><input type="submit" value="update"></div>
+            <input type="hidden" name="action" value="updateCarServ">
+            <input type="hidden" name="carID" value="<%= c.getCarID() %>">
+        </form>
+        
+        
+        <%
+            String result = (String)request.getAttribute("result");
+            if(result != null) {
+        %>
+        <h5><%= result %></h5>
+        <%
+                Car newCar = (Car)request.getAttribute("newCar");
+                if(newCar != null) {
+        %>
+        <h5>Car after updating</h5>
+        <p><%= newCar.toString() %></p>
+        <%
+                }
+            }
+        %>
     </body>
 </html>

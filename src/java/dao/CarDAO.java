@@ -192,4 +192,38 @@ public class CarDAO {
         }
         return rs;
     }
+
+    public int updateCar(Car c) {
+        int rs = 0;
+        Connection cn = null;
+        
+        try{
+            cn = DBUtils.getConnection();
+            if(cn != null) {
+                String sql = "update Cars \n"
+                        + "set serialNumber = ?, model = ?, colour = ?, year = ?\n"
+                        + "where carID = ?";
+                
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setString(1, c.getSerialNumber());
+                pst.setString(2, c.getModel());
+                pst.setString(3, c.getColour());
+                pst.setInt(4, c.getYear());
+                pst.setString(5, c.getCarID());
+                
+                rs = pst.executeUpdate();
+            }
+        } catch(Exception e) {
+            e.printStackTrace();
+        } finally {
+            try{
+                if(cn != null) {
+                    cn.close();
+                }
+            }catch(Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return rs;
+    }
 }

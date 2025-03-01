@@ -44,6 +44,10 @@
         <servlet-name>CreateCarServlet</servlet-name>
         <servlet-class>controller.CreateCarServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UpdateCarServlet</servlet-name>
+        <servlet-class>controller.UpdateCarServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginStaffServlet</servlet-name>
         <url-pattern>/LoginStaffServlet</url-pattern>
@@ -87,6 +91,10 @@
     <servlet-mapping>
         <servlet-name>CreateCarServlet</servlet-name>
         <url-pattern>/CreateCarServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateCarServlet</servlet-name>
+        <url-pattern>/UpdateCarServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
