@@ -42,6 +42,8 @@
         <p>Car before updating</p>
         <div><%= c.toString() %></div>
         
+        <p>*If you do not want to update, you make it blank</p>
+        
         <form action="MainServlet">
             <div>
                 <label>Serial Number: </label>

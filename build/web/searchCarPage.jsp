@@ -93,7 +93,7 @@
                             <td><%= c.getColour() %></td>
                             <td><%= c.getYear() %></td>
                             <td>
-                                <a href=''>Delete</a>
+                                <a href='MainServlet?action=deleteCarServ&carID=<%= c.getCarID() %>'>Delete</a>
                             </td>
                             <td>
                                 <a href='MainServlet?action=updateCar&carID=<%= c.getCarID() %>'>Update</a>
@@ -111,7 +111,18 @@
                     <%
                     }
                     }
-                    %>        
+                    %>       
+                    
+                    
+                    <!--hiển thị kết quả của delete-->
+                    <%
+                    if(request.getAttribute("delete") != null) {
+                        String delMsg = (String)request.getAttribute("delete");
+                    %>
+                    <h5><%= delMsg %></h5>
+                    <%
+                    }
+                    %>
         
     </body>
 </html>

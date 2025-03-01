@@ -5,21 +5,19 @@
  */
 package controller;
 
-import dao.CustomerDAO;
+import dao.CarDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Customer;
 
 /**
  *
  * @author ASUS
  */
-public class SearchCustomerServlet extends HttpServlet {
+public class DeleteCarServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,23 +32,18 @@ public class SearchCustomerServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            request.setCharacterEncoding("UTF-8");
-            String custName = request.getParameter("custName");
-            if(custName != null) {
-                CustomerDAO custDAO = new CustomerDAO();
-                ArrayList<Customer> tmp = custDAO.searchCustomerByName(custName);
-                //lọc ra những thằng status 1
-                ArrayList<Customer> custList = new ArrayList<>();
-                for (Customer c : tmp) {
-                    if(c.isStatus())
-                        custList.add(c);
-                }
-                request.setAttribute("custList", custList);
-                request.getRequestDispatcher("MainServlet?action=searchCust").forward(request, response);
-            } else {
+            String carIDs = request.getParameter("carID");
+            if(carIDs == null)
                 request.getRequestDispatcher("MainServlet?action=home").forward(request, response);
+            int carID = Integer.parseInt(carIDs);
+            CarDAO cD = new CarDAO();
+            int rs = cD.deleteCar(carID);
+            if(rs == 0) {
+                request.setAttribute("delete", "delete fail"); 
+            }else{
+                request.setAttribute("delete", "delete successfully"); 
             }
+            request.getRequestDispatcher("MainServlet?action=searchCar").forward(request, response);
         }
     }
 

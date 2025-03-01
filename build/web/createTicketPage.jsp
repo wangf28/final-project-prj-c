@@ -38,9 +38,20 @@
         
         <%
             CustomerDAO cD = new CustomerDAO();
-            ArrayList<Customer> custL = cD.searchCustomerByName("");
+            ArrayList<Customer> tmp = cD.searchCustomerByName("");
+            ArrayList<Customer> custList = new ArrayList<>();
+                for (Customer c : tmp) {
+                    if(c.isStatus())
+                        custList.add(c);
+            }
             CarDAO carD = new CarDAO();
-            ArrayList<Car> carL = carD.getAllCar();
+            ArrayList<Car> t = carD.getAllCar();
+            ArrayList<Car> carL = new ArrayList<>();
+            for (Car c : t) {
+                if(c.isStatus()) {
+                    carL.add(c);
+                }
+            }
         %>
         
         <div class="head-page">
@@ -63,7 +74,7 @@
                 <select name="custID" required>
                     <option value="" selected>-----None-----</option>
                     <%
-                        for (Customer c : custL) {
+                        for (Customer c : custList) {
                     %>
                     <option value="<%= c.getCustID()%>"><%= c.toString()%></option>
                     <%

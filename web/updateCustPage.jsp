@@ -52,7 +52,6 @@
             <div><input type="submit" value="update" name="action"></div>
             <input type="hidden" name="custID" value="<%= custID %>">
         </form>
-        <a href="MainServlet?action=salePersonDashBoard">Back to sale person dashboard</a>
         
             
             <%

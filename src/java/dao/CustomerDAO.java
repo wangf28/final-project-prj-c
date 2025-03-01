@@ -28,7 +28,7 @@ public class CustomerDAO {
         try{
             cn = DBUtils.getConnection();
             if(cn != null) {
-                String sql = "SELECT custID, custName, phone, sex, cusAddress\n"
+                String sql = "SELECT custID, custName, phone, sex, cusAddress, status\n"
                         + "FROM Customer\n"
                         + "WHERE custName LIKE ?";
                 PreparedStatement pst = cn.prepareStatement(sql);
@@ -44,7 +44,9 @@ public class CustomerDAO {
                         String custSex = table.getString("sex") != null ? table.getString("sex") : "";
                         //address trong sql null thì nhận về null
                         String custAddress = table.getString("cusAddress") != null ? table.getString("cusAddress") : "";
-                        Customer c = new Customer(custID, custName, custPhone, custSex, custAddress);
+                        //status
+                        boolean status = table.getBoolean("status");
+                        Customer c = new Customer(custID, custName, custPhone, custSex, custAddress, status);
                         rs.add(c);
                     }
                 }
@@ -70,8 +72,8 @@ public class CustomerDAO {
         try {
             cn = DBUtils.getConnection();
             if(cn != null) {
-                String sql = "insert Customer([custID], [custName], [phone], [sex], [cusAddress])\n"
-                        + "values (?, ?, ?, ?, ?)";
+                String sql = "insert Customer\n"
+                        + "values (?, ?, ?, ?, ?, 1)";
                 PreparedStatement pst = cn.prepareStatement(sql);
                 pst.setInt(1, c.getCustID());
                 pst.setString(2, c.getCustName());
@@ -105,7 +107,7 @@ public class CustomerDAO {
         try{
             cn = DBUtils.getConnection();
             if(cn != null) {
-                String sql = "select custName, phone, sex, cusAddress\n"
+                String sql = "select custName, phone, sex, cusAddress, status\n"
                         + "from customer where custID = ?";
                 PreparedStatement pst = cn.prepareStatement(sql);
                 pst.setInt(1, id);
@@ -116,7 +118,8 @@ public class CustomerDAO {
                         String phone = table.getString("phone") != null ? table.getString("phone") : "";
                         String sex = table.getString("sex") != null ? table.getString("sex") : "";
                         String cusAddress = table.getString("cusAddress") != null ? table.getString("cusAddress") : "";
-                        rs = new Customer(id, custName, phone, sex, cusAddress);
+                        boolean status = table.getBoolean("status");
+                        rs = new Customer(id, custName, phone, sex, cusAddress, status);
                     }
                 }
             }
@@ -171,7 +174,7 @@ public class CustomerDAO {
         try{
             cn = DBUtils.getConnection();
             if(cn != null) {
-                String sql = "delete from Customer\n"
+                String sql = "update Customer set status = 0\n"
                         + "where custID = ?";
                 PreparedStatement pst = cn.prepareStatement(sql);
                 pst.setInt(1, id);

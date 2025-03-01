@@ -5,25 +5,22 @@
             <url>web/createTicketPage.jsp</url>
             <bookmark id="1">
                 <name/>
-                <line>82</line>
+                <line>93</line>
                 <key/>
             </bookmark>
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/D:/FPT/4thSemester/PRJ301/Final_Project_PRJ_Git/src/java/controller/CreateTicketServlet.java</file>
             <file>file:/D:/FPT/4thSemester/PRJ301/Final_Project_PRJ_Git/src/java/controller/CreateCarServlet.java</file>
             <file>file:/D:/FPT/4thSemester/PRJ301/Final_Project_PRJ_Git/src/java/model/Car.java</file>
-            <file>file:/D:/FPT/4thSemester/PRJ301/Final_Project_PRJ_Git/web/searchCust.jsp</file>
-            <file>file:/D:/FPT/4thSemester/PRJ301/Final_Project_PRJ_Git/web/searchCarPage.jsp</file>
+            <file>file:/D:/FPT/4thSemester/PRJ301/Final_Project_PRJ_Git/src/java/controller/DeleteCarServlet.java</file>
+            <file>file:/D:/FPT/4thSemester/PRJ301/Final_Project_PRJ_Git/web/createTicketPage.jsp</file>
+            <file>file:/D:/FPT/4thSemester/PRJ301/Final_Project_PRJ_Git/src/java/controller/UpdateCarServlet.java</file>
             <file>file:/D:/FPT/4thSemester/PRJ301/Final_Project_PRJ_Git/web/updateCarPage.jsp</file>
-            <file>file:/D:/FPT/4thSemester/PRJ301/Final_Project_PRJ_Git/src/java/controller/MainServlet.java</file>
-            <file>file:/D:/FPT/4thSemester/PRJ301/Final_Project_PRJ_Git/web/salepersondashboard.jsp</file>
+            <file>file:/D:/FPT/4thSemester/PRJ301/Final_Project_PRJ_Git/src/java/controller/SearchCarServlet.java</file>
             <file>file:/D:/FPT/4thSemester/PRJ301/Final_Project_PRJ_Git/src/java/dao/CarDAO.java</file>
-            <file>file:/D:/FPT/4thSemester/PRJ301/Final_Project_PRJ_Git/web/createNewCust.jsp</file>
-            <file>file:/D:/FPT/4thSemester/PRJ301/Final_Project_PRJ_Git/src/java/dao/CustomerDAO.java</file>
-            <file>file:/D:/FPT/4thSemester/PRJ301/Final_Project_PRJ_Git/web/createCarPage.jsp</file>
-            <file>file:/D:/FPT/4thSemester/PRJ301/Final_Project_PRJ_Git/web/updateCustPage.jsp</file>
         </group>
     </open-files>
 </project-private>

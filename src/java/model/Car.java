@@ -7,10 +7,22 @@ public class Car{
     private String model;
     private String colour;
     private int year;
+    private boolean status;
 
     public Car() {
     }
 
+    public Car(String carID, String serialNumber, String model, String colour, int year, boolean status) {
+        this.carID = carID;
+        this.serialNumber = serialNumber;
+        this.model = model;
+        this.colour = colour;
+        this.year = year;
+        this.status = status;
+    }
+
+    
+    
     public Car(String carID, String serialNumber, String model, String colour, int year) {
         this.carID = carID;
         this.serialNumber = serialNumber;
@@ -18,6 +30,16 @@ public class Car{
         this.colour = colour;
         this.year = year;
     }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+    
+    
 
     public String getCarID() {
         return carID;

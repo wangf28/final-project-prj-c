@@ -36,7 +36,12 @@
         
         <%
             CustomerDAO custD = new CustomerDAO();
-            ArrayList<Customer> custList = custD.searchCustomerByName("");
+            ArrayList<Customer> tmp = custD.searchCustomerByName("");
+            ArrayList<Customer> custList = new ArrayList<>();
+                for (Customer c : tmp) {
+                    if(c.isStatus())
+                        custList.add(c);
+            }
         %>
 
         <div class="head-page">

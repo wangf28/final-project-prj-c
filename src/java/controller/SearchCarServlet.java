@@ -42,7 +42,13 @@ public class SearchCarServlet extends HttpServlet {
                 request.getRequestDispatcher("MainServlet?action=home").forward(request, response);
             CarDAO cD = new CarDAO();
             //dùng year là String lun, để tìm trong DB với toán tử LIKE
-            ArrayList<Car> cars = cD.getCars(serialNum, model, yearS);
+            ArrayList<Car> tmp = cD.getCars(serialNum, model, yearS);
+            ArrayList<Car> cars = new ArrayList<>();
+            for (Car c : tmp) {
+                if(c.isStatus()) {
+                    cars.add(c);
+                }
+            }
             if(cars != null) {
                 request.setAttribute("result", cars);
                 request.getRequestDispatcher("MainServlet?action=searchCar").forward(request, response);

@@ -48,6 +48,10 @@
         <servlet-name>UpdateCarServlet</servlet-name>
         <servlet-class>controller.UpdateCarServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DeleteCarServlet</servlet-name>
+        <servlet-class>controller.DeleteCarServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginStaffServlet</servlet-name>
         <url-pattern>/LoginStaffServlet</url-pattern>
@@ -95,6 +99,10 @@
     <servlet-mapping>
         <servlet-name>UpdateCarServlet</servlet-name>
         <url-pattern>/UpdateCarServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteCarServlet</servlet-name>
+        <url-pattern>/DeleteCarServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

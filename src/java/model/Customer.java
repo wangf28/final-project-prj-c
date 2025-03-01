@@ -15,9 +15,21 @@ public class Customer {
     private String custPhone;
     private String custSex;
     private String custAddress;
+    
+    private boolean status;
 
     public Customer() {
     }
+
+    public Customer(int custID, String custName, String custPhone, String custSex, String custAddress, boolean status) {
+        this.custID = custID;
+        this.custName = custName;
+        this.custPhone = custPhone;
+        this.custSex = custSex;
+        this.custAddress = custAddress;
+        this.status = status;
+    }
+    
 
     public Customer(int custID, String custName, String custPhone, String custSex, String custAddress) {
         this.custID = custID;
@@ -27,6 +39,14 @@ public class Customer {
         this.custAddress = custAddress;
     }
 
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+   
     public int getCustID() {
         return custID;
     }

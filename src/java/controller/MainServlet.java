@@ -102,8 +102,8 @@ public class MainServlet extends HttpServlet {
                 case "updateCarServ":
                     url = "UpdateCarServlet";
                     break;
-                case "deleteCar":
-                    url = "deleteCarPage.jsp";
+                case "deleteCarServ":
+                    url = "DeleteCarServlet";
                     break;    
                 //-------------------------------    
                 case "createTicketPage":
