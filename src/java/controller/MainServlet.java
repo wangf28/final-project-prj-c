@@ -118,6 +118,19 @@ public class MainServlet extends HttpServlet {
                 case "searchServiceTicketServ":
                     url = "SearchServiceTicketServlet";
                     break;
+                //---------------------------------------
+                case "searchPart":
+                    url = "SearchPart.jsp";
+                    break;
+                case "searchPartByName":
+                    url = "SearchPartServlet";
+                    break;
+                case "createPartPage":
+                    url = "CreatePart.jsp";
+                    break;
+                case "createPart":
+                    url = "CreatePartServlet";
+                    break;
             }
             request.getRequestDispatcher(url).forward(request, response);
         }
